@@ -1,0 +1,271 @@
+@import url('https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;600;800&display=swap');
+
+:root {
+    --primary: hsl(230, 85%, 60%);
+    --primary-glow: hsla(230, 85%, 60%, 0.3);
+    --secondary: hsl(280, 80%, 65%);
+    --bg: hsl(222, 47%, 11%);
+    --card-bg: hsla(222, 47%, 15%, 0.7);
+    --text: hsl(210, 40%, 98%);
+    --text-muted: hsl(215, 20%, 65%);
+    --success: hsl(142, 70%, 50%);
+    --error: hsl(0, 84%, 60%);
+    --border: hsla(217, 32%, 17%, 0.8);
+    --glass-border: hsla(210, 40%, 98%, 0.1);
+    
+    --radius-lg: 24px;
+    --radius-md: 16px;
+    --radius-sm: 8px;
+    
+    --shadow-xl: 0 20px 25px -5px rgb(0 0 0 / 0.1), 0 8px 10px -6px rgb(0 0 0 / 0.1);
+    --transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    -webkit-tap-highlight-color: transparent;
+}
+
+body {
+    font-family: 'Outfit', sans-serif;
+    background-color: var(--bg);
+    background-image: 
+        radial-gradient(at 0% 0%, hsla(230, 85%, 60%, 0.15) 0px, transparent 50%),
+        radial-gradient(at 100% 100%, hsla(280, 80%, 65%, 0.15) 0px, transparent 50%);
+    color: var(--text);
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 20px;
+    overflow-x: hidden;
+}
+
+.container {
+    width: 100%;
+    max-width: 600px;
+    z-index: 10;
+}
+
+header {
+    text-align: center;
+    margin-bottom: 40px;
+}
+
+h1 {
+    font-size: 3rem;
+    font-weight: 800;
+    letter-spacing: -0.02em;
+    background: linear-gradient(135deg, var(--text) 0%, var(--primary) 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    margin-bottom: 8px;
+}
+
+.date-display {
+    color: var(--text-muted);
+    font-weight: 400;
+    font-size: 1.1rem;
+}
+
+/* Glass Card */
+.trivia-card {
+    background: var(--card-bg);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    border: 1px solid var(--glass-border);
+    border-radius: var(--radius-lg);
+    padding: 40px;
+    box-shadow: var(--shadow-xl);
+    transition: var(--transition);
+    position: relative;
+    overflow: hidden;
+}
+
+.trivia-card::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 4px;
+    background: linear-gradient(90deg, var(--primary), var(--secondary));
+}
+
+.question-area h2 {
+    font-size: 1.5rem;
+    font-weight: 600;
+    line-height: 1.4;
+    margin-bottom: 30px;
+}
+
+/* Options Grid */
+.options-grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 12px;
+    margin-bottom: 30px;
+}
+
+.option {
+    background: hsla(217, 32%, 17%, 0.5);
+    border: 2px solid transparent;
+    border-radius: var(--radius-md);
+    padding: 16px 20px;
+    cursor: pointer;
+    transition: var(--transition);
+    display: flex;
+    align-items: center;
+    font-size: 1.1rem;
+    font-weight: 500;
+}
+
+.option:hover:not(.disabled) {
+    background: hsla(217, 32%, 25%, 0.8);
+    transform: translateY(-2px);
+}
+
+.option.selected {
+    border-color: var(--primary);
+    background: hsla(230, 85%, 60%, 0.1);
+    box-shadow: 0 0 20px var(--primary-glow);
+}
+
+.option.correct {
+    border-color: var(--success);
+    background: hsla(142, 70%, 50%, 0.1);
+}
+
+.option.incorrect {
+    border-color: var(--error);
+    background: hsla(0, 84%, 60%, 0.1);
+}
+
+.option-marker {
+    width: 28px;
+    height: 28px;
+    border-radius: 50%;
+    border: 2px solid var(--text-muted);
+    margin-right: 16px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 0.8rem;
+    transition: var(--transition);
+}
+
+.option.selected .option-marker {
+    border-color: var(--primary);
+    background: var(--primary);
+    color: white;
+}
+
+.option.correct .option-marker {
+    border-color: var(--success);
+    background: var(--success);
+    color: white;
+}
+
+.option.incorrect .option-marker {
+    border-color: var(--error);
+    background: var(--error);
+    color: white;
+}
+
+/* Buttons */
+.controls {
+    display: flex;
+    gap: 16px;
+    margin-top: 20px;
+}
+
+.btn {
+    flex: 1;
+    padding: 14px 28px;
+    border-radius: var(--radius-md);
+    border: none;
+    font-family: inherit;
+    font-size: 1rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: var(--transition);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+}
+
+.btn-primary {
+    background: var(--primary);
+    color: white;
+    box-shadow: 0 4px 14px var(--primary-glow);
+}
+
+.btn-primary:hover:not(:disabled) {
+    filter: brightness(1.1);
+    transform: translateY(-2px);
+}
+
+.btn-primary:disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+}
+
+.btn-secondary {
+    background: transparent;
+    border: 1px solid var(--glass-border);
+    color: var(--text);
+}
+
+.btn-secondary:hover {
+    background: hsla(217, 32%, 17%, 0.5);
+}
+
+/* Navigation */
+.nav-footer {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 30px;
+}
+
+.nav-btn {
+    background: none;
+    border: none;
+    color: var(--text-muted);
+    font-family: inherit;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    gap: 4px;
+    transition: var(--transition);
+}
+
+.nav-btn:hover:not(:disabled) {
+    color: var(--text);
+}
+
+.nav-btn:disabled {
+    opacity: 0.3;
+    cursor: not-allowed;
+}
+
+/* Animations */
+@keyframes fadeIn {
+    from { opacity: 0; transform: translateY(10px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+.fade-in {
+    animation: fadeIn 0.5s ease forwards;
+}
+
+/* Responsive */
+@media (max-width: 480px) {
+    h1 { font-size: 2.2rem; }
+    .trivia-card { padding: 24px; }
+    .question-area h2 { font-size: 1.25rem; }
+    .controls { flex-direction: column; }
+}

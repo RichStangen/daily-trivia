@@ -1,0 +1,12 @@
+{
+  "name": "daily-trivia",
+  "version": "1.0.0",
+  "description": "Daily Trivia Web App",
+  "main": "app.js",
+  "scripts": {
+    "start": "npx serve ."
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC"
+}
