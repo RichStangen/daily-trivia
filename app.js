@@ -20,7 +20,7 @@ function init() {
     renderQuestion(today);
 }
 
-const START_DATE = new Date(2026, 2, 30); // March 30, 2026 (Month is 0-indexed)
+const START_DATE = new Date(2026, 3, 27); // March 30, 2026 (Month is 0-indexed)
 
 function getQuestionForDate(date) {
     // Standardize both to midnight
@@ -50,7 +50,7 @@ function renderQuestion(date) {
     dateDisplay.innerText = formatDate(date);
     
     if (!question) {
-        questionText.innerText = 'Please come back on March 30th for our first trivia!';
+        questionText.innerText = 'Please come back on April 27th for our first trivia!';
         optionsGrid.innerHTML = '';
         confirmBtn.style.display = 'none';
         
