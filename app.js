@@ -20,7 +20,7 @@ function init() {
     renderQuestion(today);
 }
 
-const START_DATE = new Date(2026, 4, 27); // March 30, 2026 (Month is 0-indexed)
+const START_DATE = new Date(2026, 2, 30); // March 30, 2026 (Month is 0-indexed)
 
 function getQuestionForDate(date) {
     // Standardize both to midnight
